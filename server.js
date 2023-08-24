@@ -18,7 +18,7 @@ db.once('open', () => [
 ])
 
 // routes
-
+require('./routes/restaurant.routes')(app);
 
 app.listen(process.env.PORT || PORT, () => {
   console.log('listening on port : ' + PORT);

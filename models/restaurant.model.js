@@ -8,4 +8,8 @@ const restuarantSchema = new Schema({
   location: String,
   phone: String,
   rating: Number,
-})
+}, {
+  timestamps: true
+});
+
+module.exports = model('Restaurant', restuarantSchema);
