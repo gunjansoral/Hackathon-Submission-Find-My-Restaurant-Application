@@ -1,11 +1,15 @@
-// POST
-
 const Restaurant = require("../models/restaurant.model");
+
+// POST
 
 exports.addRestaurant = async (req, res) => {
   try {
     // This API will collect new restaurant data and add it to the database.
     const { name, description, category, imageURL, location, phone, rating } = req.body;
+    if (!name || !description || !category || !imageURL || !location || !phone || !rating) return res.status(400).send({
+      message: "Content cannot be empty"
+    })
+
     const newRestaurant = new Restaurant({
       name,
       description,
@@ -31,8 +35,12 @@ exports.addRestaurant = async (req, res) => {
 exports.getRestaurants = async (req, res) => {
   try {
     // This API returns details of all the restaurants present in the database.
-    const restaurant = await Restaurant.find({})
-    res.status(200).send(restaurant);
+    const restaurants = await Restaurant.find({})
+
+    res.status(200).send({
+      restaurants,
+      message: "Restaurants fetched successfully."
+    });
   } catch (error) {
     res.status(500).send({
       message: "Some error occured while fetching the Restaurants."
@@ -70,8 +78,13 @@ exports.getRestaurantById = async (req, res) => {
   try {
     // This API returns details of the restaurant with a particular id.
     const { id } = req.params;
-    const restuarant = await Restaurant.findById(id);
-    res.status(200).send(restuarant);
+    const restaurant = await Restaurant.findById(id);
+
+    if (!restaurant) return res.status(404).send({
+      message: "No Restaurant found with the given ID"
+    })
+
+    res.status(200).send(restaurant);
   } catch (error) {
     console.log(error)
     res.status(500).send({
