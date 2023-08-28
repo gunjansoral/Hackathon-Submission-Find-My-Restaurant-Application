@@ -1,4 +1,4 @@
-#Hackathon Submission - Find My Restaurant Application
+# Hackathon Submission - Find My Restaurant Application
 Welcome to the Find My Restaurant application! This project is aimed at helping users discover restaurants based on their preferences and location. Whether you're a food enthusiast or just looking for a place to dine, this app has got you covered.
 
 Getting Started
